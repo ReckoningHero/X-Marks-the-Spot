@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
 Debug|Win32|C:\Users\Joshua\Documents\GitHub\X Marks the Spot\|
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
+Debug|Win32|C:\Users\Joshua\Documents\GitHub\X Marks the Spot\|
+>>>>>>> origin/master

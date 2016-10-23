@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #pragma once
 
 #include <windows.h>
@@ -14,4 +15,22 @@ private:
 	bool watchStopped;
 	__int64 currentCount;
 	__int64 startCount;
+=======
+#pragma once
+
+#include <windows.h>
+
+class Timer
+{
+public:
+	Timer();
+	void StartWatch();
+	void StopWatch();
+	float GetTimeMilli() const;
+private:
+	float invFreqMilli;
+	bool watchStopped;
+	__int64 currentCount;
+	__int64 startCount;
+>>>>>>> origin/master
 };

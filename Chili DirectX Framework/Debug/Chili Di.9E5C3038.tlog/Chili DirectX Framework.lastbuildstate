@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
 Debug|Win32|C:\Users\Joshua\Desktop 2.0\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\|
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
+Debug|Win32|C:\Users\Joshua\Desktop 2.0\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\|
+>>>>>>> origin/master
