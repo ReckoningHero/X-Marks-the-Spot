@@ -1,0 +1,167 @@
+#include <Windows.h>
+#include <wchar.h>
+#include "Game.h"
+#include "resource.h"
+#include "Mouse.h"
+
+static KeyboardServer kServ;
+static MouseServer mServ;
+
+LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
+{
+    switch( msg )
+    {
+        case WM_DESTROY:
+            PostQuitMessage( 0 );
+            break;
+
+		// ************ KEYBOARD MESSAGES ************ //
+		case WM_KEYDOWN:
+			switch( wParam )
+			{
+			case VK_UP:
+				kServ.OnUpPressed();
+				break;
+			case VK_DOWN:
+				kServ.OnDownPressed();
+				break;
+			case VK_LEFT:
+				kServ.OnLeftPressed();
+				break;
+			case VK_RIGHT:
+				kServ.OnRightPressed();
+				break;
+			case VK_SPACE:
+                kServ.OnSpacePressed();
+				break;
+			case VK_RETURN:
+				kServ.OnEnterPressed();
+				break;
+			case VK_TAB:
+				kServ.OnTabPressed();
+				break;
+			}
+			break;
+		case WM_KEYUP:
+   			switch( wParam )
+			{
+			case VK_UP:
+				kServ.OnUpReleased();
+				break;
+			case VK_DOWN:
+				kServ.OnDownReleased();
+				break;
+			case VK_LEFT:
+				kServ.OnLeftReleased();
+				break;
+			case VK_RIGHT:
+				kServ.OnRightReleased();
+				break;
+			case VK_SPACE:
+				kServ.OnSpaceReleased();
+				break;
+			case VK_RETURN:
+				kServ.OnEnterReleased();
+				break;
+			case VK_TAB:
+				kServ.OnTabReleased();
+			}
+			break;
+		// ************ END KEYBOARD MESSAGES ************ //
+
+		// ************ MOUSE MESSAGES ************ //
+		case WM_MOUSEMOVE:
+			{
+				int x = (short)LOWORD( lParam );
+				int y = (short)HIWORD( lParam );
+				if( x > 0 && x < 1280 && y > 0 && y < 720 )
+				{
+					mServ.OnMouseMove( x,y );
+					if( !mServ.IsInWindow() )
+					{
+						SetCapture( hWnd );
+						mServ.OnMouseEnter();
+					}
+				}
+				else
+				{
+					if( wParam & (MK_LBUTTON | MK_RBUTTON) )
+					{
+						x = max( 0,x );
+						x = min( 1279,x );
+						y = max( 0,y );
+						y = min( 719,y );
+						mServ.OnMouseMove( x,y );
+					}
+					else
+					{
+						ReleaseCapture();
+						mServ.OnMouseLeave();
+						mServ.OnLeftReleased();
+						mServ.OnRightReleased();
+					}
+				}
+			}
+			break;
+		case WM_LBUTTONDOWN:
+			mServ.OnLeftPressed();
+			break;
+		case WM_RBUTTONDOWN:
+			mServ.OnRightPressed();
+			break;
+		case WM_LBUTTONUP:
+			mServ.OnLeftReleased();
+			break;
+		case WM_RBUTTONUP:
+			mServ.OnRightReleased();
+			break;
+		// ************ END MOUSE MESSAGES ************ //
+    }
+
+    return DefWindowProc( hWnd, msg, wParam, lParam );
+}
+
+
+int WINAPI wWinMain( HINSTANCE hInst,HINSTANCE,LPWSTR,INT )
+{
+	WNDCLASSEX wc = { sizeof( WNDCLASSEX ),CS_CLASSDC,MsgProc,0,0,
+                      GetModuleHandle( NULL ),NULL,NULL,NULL,NULL,
+                      L"Chili DirectX Framework Window",NULL };
+    wc.hIconSm = (HICON)LoadImage( hInst,MAKEINTRESOURCE( IDI_APPICON16 ),IMAGE_ICON,16,16,0 );
+	wc.hIcon   = (HICON)LoadImage( hInst,MAKEINTRESOURCE( IDI_APPICON32 ),IMAGE_ICON,32,32,0 );
+	wc.hCursor = LoadCursor( NULL,IDC_ARROW );
+    RegisterClassEx( &wc );
+	
+	RECT wr;
+	wr.left = 300;
+	wr.right = 1280 + wr.left;
+	wr.top = 200;
+	wr.bottom = 720 + wr.top;
+	AdjustWindowRect( &wr,WS_OVERLAPPEDWINDOW,FALSE );
+    HWND hWnd = CreateWindowW( L"Chili DirectX Framework Window",L"X Marks the Spot",
+                              WS_OVERLAPPEDWINDOW,wr.left,wr.top,wr.right-wr.left,wr.bottom-wr.top,
+                              NULL,NULL,wc.hInstance,NULL );
+
+    ShowWindow( hWnd,SW_SHOWDEFAULT );
+    UpdateWindow( hWnd );
+
+	Game theGame( hWnd,kServ,mServ );
+	
+    MSG msg;
+    ZeroMemory( &msg,sizeof( msg ) );
+    while( msg.message != WM_QUIT )
+    {
+        if( PeekMessage( &msg,NULL,0,0,PM_REMOVE ) )
+        {
+            TranslateMessage( &msg );
+            DispatchMessage( &msg );
+        }
+        else
+		{
+			theGame.Go();
+		}
+    }
+
+    UnregisterClass( L"Chili DirectX Framework Window",wc.hInstance );
+    return 0;
+}
