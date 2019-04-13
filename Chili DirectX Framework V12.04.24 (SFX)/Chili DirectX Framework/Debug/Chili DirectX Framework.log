@@ -1,0 +1,12 @@
+﻿  D3DGraphics.cpp
+  Game.cpp
+C:\Users\twinb0rn\Desktop\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\Assets\Game.cpp(56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\twinb0rn\Desktop\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\Assets\Game.cpp(57): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\twinb0rn\Desktop\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\Assets\Game.cpp(4482): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Keyboard.cpp
+  Mouse.cpp
+  Sound.cpp
+  Timer.cpp
+  Windows.cpp
+  Generating Code...
+  Chili DirectX Framework.vcxproj -> C:\Users\twinb0rn\Desktop\Custom1.75\Chili DirectX Framework V12.04.24 (SFX)\Debug\Chili DirectX Framework.exe

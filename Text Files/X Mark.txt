@@ -1,0 +1,30 @@
+	gfx.PutPixel(x,y,255,0,0 );//Center
+
+	gfx.PutPixel( -8 + x, 8 + y,0,0,255 ); //Bottom Left
+	gfx.PutPixel( -7 + x,7 + y,0,0,255 );
+	gfx.PutPixel( -6 + x,6 + y,0,0,255 );
+	gfx.PutPixel( -5 + x, 5 + y,0,0,255 );
+	gfx.PutPixel( -4 + x,4 + y,0,0,255 );
+	gfx.PutPixel( -3 + x,3 + y,0,0,255 );
+
+
+	gfx.PutPixel( 3 + x,-3 + y,0,0,255 ); //Top Right
+	gfx.PutPixel( 4 + x, -4 + y,0,0,255 );
+	gfx.PutPixel( 5 + x,-5 + y,0,0,255 );
+	gfx.PutPixel( 6 + x, -6 + y,0,0,255 );
+	gfx.PutPixel( 7 + x,-7 + y,0,0,255 );
+	gfx.PutPixel( 8 + x, -8 + y,0,0,255 );
+	
+	gfx.PutPixel( -8 + x, -8 + y,0,0,255 );//Top Left
+	gfx.PutPixel( -7 + x,-7 + y,0,0,255 );
+	gfx.PutPixel( -6 + x, -6 + y,0,0,255 );
+	gfx.PutPixel( -5 + x,-5 + y,0,0,255 );
+	gfx.PutPixel( -4 + x,-4 + y,0,0,255 );
+	gfx.PutPixel( -3 + x,-3 + y,0,0,255 );
+
+	gfx.PutPixel( 3 + x,3 + y,0,0,255 );//Bottom Right
+	gfx.PutPixel( 4 + x,4 + y,0,0,255 );
+	gfx.PutPixel( 5 + x,5 + y,0,0,255 );
+	gfx.PutPixel( 6 + x, 6 + y,0,0,255 );
+	gfx.PutPixel( 7 + x,7 + y,0,0,255 );
+	gfx.PutPixel( 8 + x, 8 + y,0,0,255 );
